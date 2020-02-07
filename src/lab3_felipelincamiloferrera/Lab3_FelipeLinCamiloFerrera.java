@@ -7,9 +7,20 @@ public class Lab3_FelipeLinCamiloFerrera {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner (System.in);
-        ArrayList equipos = new ArrayList();
+        ArrayList <Equipo> equipos = new ArrayList();
         ArrayList<Persona> personas = new ArrayList();
         ArrayList<Jugada> jugadas = new ArrayList();
+        
+        ArrayList<Jugador> agenteslibres = new ArrayList();
+        ArrayList<EntrenadorPrincipal> entrenadores = new ArrayList();
+        ArrayList<AsistenteEntrenador> entrenadoresasistentes = new ArrayList();
+        ArrayList<PreparadorFisico> preparadoresfisicos = new ArrayList();
+        ArrayList<MedicoGeneral> medicosgeneralesx = new ArrayList();
+        ArrayList<Terapeuta> terapeutasx = new ArrayList();
+        ArrayList<Cirujano> cirujanosx = new ArrayList();
+        ArrayList<Dueño> dueñosx = new ArrayList();
+        
+        int cirujanos = 0, entrenadoresp = 0, entrenadoresasist = 0, preparadores = 0, medicosgenerales = 0, terapeutas = 0, dueños = 0;
         
         while (true) {
             System.out.println("1. Crear \n"
@@ -75,6 +86,13 @@ public class Lab3_FelipeLinCamiloFerrera {
                                     int posteo = sc.nextInt();
                                     System.out.print("Ingrese altura: ");
                                     double altura = sc.nextDouble();
+                                    
+                                    while (altura != 1.93 && altura != 2.05 && altura != 2 && altura != 2.10 && altura != 2.13) {
+                                        System.out.println();
+                                        System.out.println("Opcion de altura no valida");
+                                        System.out.print("Ingrese altura: ");
+                                        altura = sc.nextDouble();
+                                    }
 
                                     while (tiro3 > 99 || defensa > 99 || tiromedia > 99 || bandeja > 99 || pase > 99 || posteo > 99) {
                                         System.out.println();
@@ -96,9 +114,29 @@ public class Lab3_FelipeLinCamiloFerrera {
                                         posteo = sc.nextInt();            
                                     }
                                     System.out.println();
+                                    
 
-                                    personas.add(new Jugador(numcamisa,tiro3,defensa,tiromedia,rebote,bandeja,pase,posteo,altura,nombre,apellido,años,salario));
-                                    System.out.println("Jugador Creado con Exito");
+                                    if (altura == 1.93){
+                                        personas.add(new Base (numcamisa,tiro3,defensa,tiromedia,rebote,bandeja,pase,posteo,altura,nombre,apellido,años,salario));
+                                        System.out.println("Base creado Exitosamente");
+                                        agenteslibres.add(new Base (numcamisa,tiro3,defensa,tiromedia,rebote,bandeja,pase,posteo,altura,nombre,apellido,años,salario));
+                                    } else if (altura == 2){
+                                        personas.add(new Escolta (numcamisa,tiro3,defensa,tiromedia,rebote,bandeja,pase,posteo,altura,nombre,apellido,años,salario));
+                                        System.out.println("Escolta creado Exitosamente");
+                                        agenteslibres.add(new Escolta (numcamisa,tiro3,defensa,tiromedia,rebote,bandeja,pase,posteo,altura,nombre,apellido,años,salario));
+                                    } else if (altura == 2.05){
+                                        personas.add(new Alero (numcamisa,tiro3,defensa,tiromedia,rebote,bandeja,pase,posteo,altura,nombre,apellido,años,salario));
+                                        System.out.println("Alero creado Exitosamente");
+                                        agenteslibres.add(new Alero (numcamisa,tiro3,defensa,tiromedia,rebote,bandeja,pase,posteo,altura,nombre,apellido,años,salario));
+                                    } else if (altura == 2.10){
+                                        personas.add(new AleroPivot (numcamisa,tiro3,defensa,tiromedia,rebote,bandeja,pase,posteo,altura,nombre,apellido,años,salario));
+                                        System.out.println("Alero-Pivot creado Exitosamente");
+                                        agenteslibres.add(new AleroPivot (numcamisa,tiro3,defensa,tiromedia,rebote,bandeja,pase,posteo,altura,nombre,apellido,años,salario));
+                                    } else if (altura == 2.13){
+                                        personas.add(new Centro (numcamisa,tiro3,defensa,tiromedia,rebote,bandeja,pase,posteo,altura,nombre,apellido,años,salario));
+                                        System.out.println("Centro creado Exitosamente");
+                                        agenteslibres.add(new Centro (numcamisa,tiro3,defensa,tiromedia,rebote,bandeja,pase,posteo,altura,nombre,apellido,años,salario));
+                                    }
                                     break;
                                 case "2":
                                     if (jugadas.size() == 0){
@@ -124,7 +162,7 @@ public class Lab3_FelipeLinCamiloFerrera {
 
                                         while (pos >= jugadas.size()){
                                             System.out.println();
-                                            System.out.println("Posición no valida");
+                                            System.out.println("Jugada no valida");
                                             System.out.print("Seleccione jugada favorita: ");
                                             pos = sc.nextInt();
                                             pos--;
@@ -144,14 +182,20 @@ public class Lab3_FelipeLinCamiloFerrera {
                                             case "1":
                                                 personas.add(new EntrenadorPrincipal (jugador,jugadafav,nombre,apellido,años,salario));
                                                 System.out.println("Entrenador Principal creado con Exito");
+                                                entrenadores.add(new EntrenadorPrincipal (jugador,jugadafav,nombre,apellido,años,salario));
+                                                entrenadoresp++;
                                                 break;
                                             case "2":
                                                 personas.add(new AsistenteEntrenador (jugador,jugadafav,nombre,apellido,años,salario));
                                                 System.out.println("Asistente de Entrenador creado con Exito");
+                                                entrenadoresasistentes.add(new AsistenteEntrenador (jugador,jugadafav,nombre,apellido,años,salario));
+                                                entrenadoresasist++;
                                                 break;
                                             case "3":
                                                 personas.add(new PreparadorFisico (jugador,jugadafav,nombre,apellido,años,salario));
                                                 System.out.println("Preparador Fisico creado con Exito");
+                                                preparadoresfisicos.add(new PreparadorFisico (jugador,jugadafav,nombre,apellido,años,salario));
+                                                preparadores++;
                                             default:
                                                 System.out.println("Opcion Incorrecta");
                                                 break;
@@ -159,7 +203,7 @@ public class Lab3_FelipeLinCamiloFerrera {
                                     }                                        
                                     break;
                                 case "3":
-                                    System.out.println("Ingrese colegio de donde se egreso el medico: ");
+                                    System.out.print("Ingrese colegio de donde se egreso el medico: ");
                                     sc.nextLine();
                                     String colegio = sc.nextLine();
                                     System.out.println();
@@ -167,24 +211,44 @@ public class Lab3_FelipeLinCamiloFerrera {
                                     System.out.println("1. Medico General \n"
                                             + "2. Cirujano \n"
                                             + "3. Terapeuta");
-                                    System.out.println("Seleccione especialidad del medico: ");
+                                    System.out.print("Seleccione especialidad del medico: ");
                                     String opcionmedico = sc.next();
                                     System.out.println();
                                     
                                     switch (opcionmedico) {
                                         case "1":
                                             personas.add(new MedicoGeneral(0,colegio,nombre,apellido,años,salario));
+                                            System.out.println("Medico General creado Exitosamente");
+                                            medicosgeneralesx.add(new MedicoGeneral(0,colegio,nombre,apellido,años,salario));
+                                            medicosgenerales++;
                                             break;
                                         case "2":
                                             personas.add(new Cirujano(0,colegio,nombre,apellido,años,salario));
+                                            System.out.println("Cirujano creado Exitosamente");
+                                            cirujanosx.add(new Cirujano(0,colegio,nombre,apellido,años,salario));
+                                            cirujanos++;
                                             break;
                                         case "3":
                                             personas.add(new Terapeuta(0,colegio,nombre,apellido,años,salario));
+                                            System.out.println("Terapeuta creado Exitosamente");
+                                            terapeutasx.add (new Terapeuta(0,colegio,nombre,apellido,años,salario));
+                                            terapeutas++;
                                             break;
                                         default:
                                             System.out.println("Opcion Incorrecta");
                                             break;
                                     }
+                                    break;
+                                case "4":
+                                    System.out.print("Ingrese NetWorth: ");
+                                    int cash = sc.nextInt();
+                                    System.out.print("Ingrese ciudad: ");
+                                    String ciudad = sc.next();
+                                    
+                                    personas.add(new Dueño (cash,ciudad,nombre,apellido,años,salario));
+                                    System.out.println("Dueño creado Exitosamente");
+                                    dueñosx.add(new Dueño (cash,ciudad,nombre,apellido,años,salario));
+                                    dueños++;
                                     break;
                                 default:
                                     System.out.println("Opcion Incorrecta");
@@ -192,12 +256,102 @@ public class Lab3_FelipeLinCamiloFerrera {
                             }                            
                             break;
                         case "2":
-                            System.out.println("Ingrese nombre: ");
-                            nombre = sc.next();
-                            System.out.println("Año de Fundación: ");
-                            int añof = sc.nextInt();
-                            System.out.println("Ingrese numero de campeonatos: ");
-                            int anillos = sc.nextInt();
+                            if (agenteslibres.size() == 0 || cirujanos == 0 || entrenadoresp == 0 || entrenadoresasist == 0 || preparadores == 0 || medicosgenerales == 0 || terapeutas == 0 || dueños == 0){
+                                System.out.println("No hay suficiente personal creado para crear un equipo");
+                            } else {
+                                System.out.print("Ingrese nombre: ");
+                                sc.nextLine();
+                                nombre = sc.nextLine();
+                                System.out.print("Ingrese año de fundación: ");
+                                int añof = sc.nextInt();
+                                System.out.print("Ingrese numero de campeonatos: ");
+                                int anillos = sc.nextInt();
+                            }
+                            
+                            ArrayList<Jugador> jugadores = new ArrayList();
+                            ArrayList<Persona> personal = new ArrayList();
+                            
+                            System.out.print("Cuantos jugadores desea agregar al equipo: ");
+                            int cant = sc.nextInt();
+                            
+                            for (int i = 0; i < cant; i++) {
+                                for (int j = 0; j < agenteslibres.size(); j++) {
+                                    System.out.println((j+1) + " " + agenteslibres.get(i).getNombre());
+                                }
+                                System.out.print("Seleccione jugador: ");
+                                int x = sc.nextInt();
+                                x--;
+                                while (x >= agenteslibres.size() || x < 0) {
+                                    System.out.println();
+                                    System.out.println("Jugador no valido");
+                                    System.out.println("Seleccione jugador: ");
+                                    x = sc.nextInt();
+                                }
+                                jugadores.add(agenteslibres.get(x));
+                                agenteslibres.remove(x);
+                                System.out.println();
+                            }
+                            
+                            
+                            for (int i = 0; i < entrenadores.size(); i++) {
+                                System.out.println((i+1) + " " + entrenadores.get(i).getNombre());
+                            }
+                            System.out.print("Seleccione entrenador: ");
+                            int x = sc.nextInt();
+                            x--;
+                            while (x >= entrenadores.size() || x < 0) {
+                                System.out.println();
+                                System.out.println("Entrenador no valido");
+                                System.out.print("Seleccione entrenador: ");
+                                x = sc.nextInt();
+                            }
+                            System.out.println();
+                            personal.add(entrenadores.get(x));
+                            
+                            for (int i = 0; i < entrenadoresasistentes.size(); i++) {
+                                System.out.println((i+1) + " " + entrenadoresasistentes.get(i).getNombre());
+                            }
+                            System.out.print("Seleccione entrenador asistente: ");
+                            x = sc.nextInt();
+                            x--;
+                            while (x >= entrenadoresasistentes.size() || x < 0) {
+                                System.out.println();
+                                System.out.println("Entrenador asistente no valido");
+                                System.out.print("Seleccione entrenador asistente: ");
+                                x = sc.nextInt();
+                            }
+                            System.out.println();
+                            personal.add(entrenadoresasistentes.get(x));
+                            
+                            for (int i = 0; i < preparadoresfisicos.size(); i++) {
+                                System.out.println((i+1) + " " + preparadoresfisicos.get(i).getNombre());
+                            }
+                            System.out.print("Seleccione preparador fisico: ");
+                            x = sc.nextInt();
+                            x--;
+                            while (x >= preparadoresfisicos.size() || x < 0) {
+                                System.out.println();
+                                System.out.println("Preparador no valido");
+                                System.out.print("Seleccione preparador fisico: ");
+                                x = sc.nextInt();
+                            }
+                            System.out.println();
+                            personal.add(preparadoresfisicos.get(x));
+                            
+                            for (int i = 0; i < medicosgeneralesx.size(); i++) {
+                                System.out.println((i+1) + " " + medicosgeneralesx.get(i).getNombre());
+                            }
+                            System.out.print("Seleccione medico general: ");
+                            x = sc.nextInt();
+                            x--;
+                            while (x >= medicosgeneralesx.size() || x < 0) {
+                                System.out.println();
+                                System.out.println("Medico general valido");
+                                System.out.print("Seleccione medico general asistente: ");
+                                x = sc.nextInt();
+                            }
+                            System.out.println();
+                            personal.add(medicosgeneralesx.get(x));
                             break;
                         case "3":
                             System.out.print("Ingrese descripción: ");
