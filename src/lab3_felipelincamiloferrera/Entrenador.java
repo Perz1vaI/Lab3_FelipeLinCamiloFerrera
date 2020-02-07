@@ -3,11 +3,11 @@ package lab3_felipelincamiloferrera;
 public class Entrenador extends Persona {
 
     protected boolean jugador;
-    protected String JugadaFav;
+    protected Jugada JugadaFav;
 
     
 
-    public Entrenador(boolean jugador, String JugadaFav, String nombre, String apellido, int añosP, int salario) {
+    public Entrenador(boolean jugador, Jugada JugadaFav, String nombre, String apellido, int añosP, int salario) {
         super(nombre, apellido, añosP, salario);
         this.jugador = jugador;
         this.JugadaFav = JugadaFav;
@@ -21,11 +21,11 @@ public class Entrenador extends Persona {
         this.jugador = jugador;
     }
 
-    public String getJugadaFav() {
+    public Jugada getJugadaFav() {
         return JugadaFav;
     }
 
-    public void setJugadaFav(String JugadaFav) {
+    public void setJugadaFav(Jugada JugadaFav) {
         this.JugadaFav = JugadaFav;
     }
 

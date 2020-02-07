@@ -1,11 +1,11 @@
 package lab3_felipelincamiloferrera;
 
-public class Jugadas {
+public class Jugada {
 
     private String descip;
     private int PorcentajeEfec;
 
-    public Jugadas(String descip, int PorcentajeEfec) {
+    public Jugada(String descip, int PorcentajeEfec) {
         this.descip = descip;
         this.PorcentajeEfec = PorcentajeEfec;
     }

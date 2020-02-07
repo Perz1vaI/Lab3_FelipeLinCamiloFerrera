@@ -4,8 +4,6 @@ public class Medico extends Persona {
 
     protected String colegio;
 
-   
-
     public Medico(String colegio, String nombre, String apellido, int añosP, int salario) {
         super(nombre, apellido, añosP, salario);
         this.colegio = colegio;

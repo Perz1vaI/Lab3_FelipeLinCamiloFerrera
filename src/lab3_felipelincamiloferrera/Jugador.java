@@ -48,11 +48,6 @@ public class Jugador extends Persona {
         return altura;
     }
 
-    @Override
-    public String toString() {
-        return nombre;
-    }
-
     
     
 }

@@ -2,15 +2,15 @@ package lab3_felipelincamiloferrera;
 
 import java.util.ArrayList;
 
-public class Equipos {
+public class Equipo {
 
     private String nombre;
     private int año, campeonatos;
     private ArrayList personal = new ArrayList();
     private Dueño dueño;
-    private ArrayList<Jugadas> jugadas = new ArrayList();
+    private ArrayList<Jugada> jugadas = new ArrayList();
 
-    public Equipos(String nombre, int año, int campeonatos, Dueño dueño) {
+    public Equipo(String nombre, int año, int campeonatos, Dueño dueño) {
         this.nombre = nombre;
         this.año = año;
         this.campeonatos = campeonatos;
@@ -57,11 +57,11 @@ public class Equipos {
         this.dueño = dueño;
     }
 
-    public ArrayList<Jugadas> getJugadas() {
+    public ArrayList<Jugada> getJugadas() {
         return jugadas;
     }
 
-    public void setJugadas(ArrayList<Jugadas> jugadas) {
+    public void setJugadas(ArrayList<Jugada> jugadas) {
         this.jugadas = jugadas;
     }
 
