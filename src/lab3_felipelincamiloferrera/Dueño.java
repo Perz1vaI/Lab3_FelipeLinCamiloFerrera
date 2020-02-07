@@ -1,11 +1,12 @@
 package lab3_felipelincamiloferrera;
 
-public class Dueño {
+public class Dueño extends Persona {
 
     private int Networth;
     private String ciudad;
 
-    public Dueño(int Networth, String ciudad) {
+    public Dueño(int Networth, String ciudad, String nombre, String apellido, int añosP, int salario) {
+        super(nombre, apellido, añosP, salario);
         this.Networth = Networth;
         this.ciudad = ciudad;
     }

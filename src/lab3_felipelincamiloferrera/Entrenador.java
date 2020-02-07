@@ -1,11 +1,14 @@
 package lab3_felipelincamiloferrera;
 
-public class Entrenador {
+public class Entrenador extends Persona {
 
     protected boolean jugador;
     protected String JugadaFav;
 
-    public Entrenador(boolean jugador, String JugadaFav) {
+    
+
+    public Entrenador(boolean jugador, String JugadaFav, String nombre, String apellido, int añosP, int salario) {
+        super(nombre, apellido, añosP, salario);
         this.jugador = jugador;
         this.JugadaFav = JugadaFav;
     }
