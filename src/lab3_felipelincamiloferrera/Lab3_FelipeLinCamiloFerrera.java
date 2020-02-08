@@ -1,12 +1,14 @@
 package lab3_felipelincamiloferrera;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Lab3_FelipeLinCamiloFerrera {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner (System.in);
+        Random rand = new Random ();
         ArrayList <Equipo> equipos = new ArrayList();
         ArrayList<Persona> personas = new ArrayList();
         ArrayList<Jugada> jugadas = new ArrayList();
@@ -27,7 +29,7 @@ public class Lab3_FelipeLinCamiloFerrera {
                     + "2. Modificar \n"
                     + "3. Eliminar \n"
                     + "4. Jugar Partido \n"
-                    + "5. Imprimir");
+                    + "5. Entrenar");
             System.out.print("Ingrese opción ó pulse [0] para salir: ");
             String opcionmenu = sc.next();
             System.out.println();
@@ -256,7 +258,7 @@ public class Lab3_FelipeLinCamiloFerrera {
                             }                            
                             break;
                         case "2":
-                            if (agenteslibres.size() == 0 || cirujanos == 0 || entrenadoresp == 0 || entrenadoresasist == 0 || preparadores == 0 || medicosgenerales == 0 || terapeutas == 0 || dueños == 0){
+                            if (agenteslibres.size() == 0 || cirujanos == 0 || entrenadoresp == 0 || entrenadoresasist == 0 || preparadores == 0 || medicosgenerales == 0 || terapeutas == 0 || dueños == 0 || jugadas.size() == 0){
                                 System.out.println("No hay suficiente personal creado para crear un equipo");
                             } else {
                                 System.out.print("Ingrese nombre: ");
@@ -266,92 +268,177 @@ public class Lab3_FelipeLinCamiloFerrera {
                                 int añof = sc.nextInt();
                                 System.out.print("Ingrese numero de campeonatos: ");
                                 int anillos = sc.nextInt();
-                            }
-                            
-                            ArrayList<Jugador> jugadores = new ArrayList();
-                            ArrayList<Persona> personal = new ArrayList();
-                            
-                            System.out.print("Cuantos jugadores desea agregar al equipo: ");
-                            int cant = sc.nextInt();
-                            
-                            for (int i = 0; i < cant; i++) {
-                                for (int j = 0; j < agenteslibres.size(); j++) {
-                                    System.out.println((j+1) + " " + agenteslibres.get(i).getNombre());
+                                
+                                ArrayList<Jugador> jugadores = new ArrayList();
+                                ArrayList<Persona> personal = new ArrayList();
+
+                                System.out.print("Cuantos jugadores desea agregar al equipo: ");
+                                int cant = sc.nextInt();
+
+                                for (int i = 0; i < cant; i++) {
+                                    for (int j = 0; j < agenteslibres.size(); j++) {
+                                        System.out.println((j+1) + " " + agenteslibres.get(i).getNombre() + " " + agenteslibres.get(i).getApellido());
+                                    }
+                                    System.out.print("Seleccione jugador: ");
+                                    int x = sc.nextInt();
+                                    x--;
+                                    while (x >= agenteslibres.size() || x < 0) {
+                                        System.out.println();
+                                        System.out.println("Jugador no valido");
+                                        System.out.println("Seleccione jugador: ");
+                                        x = sc.nextInt();
+                                        x--;
+                                    }
+                                    jugadores.add(agenteslibres.get(x));
+                                    personal.add(agenteslibres.get(x));
+                                    agenteslibres.remove(x);
+                                    System.out.println();
                                 }
-                                System.out.print("Seleccione jugador: ");
+
+
+                                for (int i = 0; i < entrenadores.size(); i++) {
+                                    System.out.println((i+1) + " " + entrenadores.get(i).getNombre());
+                                }
+                                System.out.print("Seleccione entrenador: ");
                                 int x = sc.nextInt();
                                 x--;
-                                while (x >= agenteslibres.size() || x < 0) {
+                                while (x >= entrenadores.size() || x < 0) {
                                     System.out.println();
-                                    System.out.println("Jugador no valido");
-                                    System.out.println("Seleccione jugador: ");
+                                    System.out.println("Entrenador no valido");
+                                    System.out.print("Seleccione entrenador: ");
                                     x = sc.nextInt();
+                                    x--;
                                 }
-                                jugadores.add(agenteslibres.get(x));
-                                agenteslibres.remove(x);
                                 System.out.println();
-                            }
-                            
-                            
-                            for (int i = 0; i < entrenadores.size(); i++) {
-                                System.out.println((i+1) + " " + entrenadores.get(i).getNombre());
-                            }
-                            System.out.print("Seleccione entrenador: ");
-                            int x = sc.nextInt();
-                            x--;
-                            while (x >= entrenadores.size() || x < 0) {
-                                System.out.println();
-                                System.out.println("Entrenador no valido");
-                                System.out.print("Seleccione entrenador: ");
-                                x = sc.nextInt();
-                            }
-                            System.out.println();
-                            personal.add(entrenadores.get(x));
-                            
-                            for (int i = 0; i < entrenadoresasistentes.size(); i++) {
-                                System.out.println((i+1) + " " + entrenadoresasistentes.get(i).getNombre());
-                            }
-                            System.out.print("Seleccione entrenador asistente: ");
-                            x = sc.nextInt();
-                            x--;
-                            while (x >= entrenadoresasistentes.size() || x < 0) {
-                                System.out.println();
-                                System.out.println("Entrenador asistente no valido");
+                                personal.add(entrenadores.get(x));
+
+                                for (int i = 0; i < entrenadoresasistentes.size(); i++) {
+                                    System.out.println((i+1) + " " + entrenadoresasistentes.get(i).getNombre() + " " + entrenadoresasistentes.get(i).getApellido());
+                                }
                                 System.out.print("Seleccione entrenador asistente: ");
                                 x = sc.nextInt();
-                            }
-                            System.out.println();
-                            personal.add(entrenadoresasistentes.get(x));
-                            
-                            for (int i = 0; i < preparadoresfisicos.size(); i++) {
-                                System.out.println((i+1) + " " + preparadoresfisicos.get(i).getNombre());
-                            }
-                            System.out.print("Seleccione preparador fisico: ");
-                            x = sc.nextInt();
-                            x--;
-                            while (x >= preparadoresfisicos.size() || x < 0) {
+                                x--;
+                                while (x >= entrenadoresasistentes.size() || x < 0) {
+                                    System.out.println();
+                                    System.out.println("Entrenador asistente no valido");
+                                    System.out.print("Seleccione entrenador asistente: ");
+                                    x = sc.nextInt();
+                                    x--;
+                                }
                                 System.out.println();
-                                System.out.println("Preparador no valido");
+                                personal.add(entrenadoresasistentes.get(x));
+
+                                for (int i = 0; i < preparadoresfisicos.size(); i++) {
+                                    System.out.println((i+1) + " " + preparadoresfisicos.get(i).getNombre() + " " + preparadoresfisicos.get(i).getApellido());
+                                }
                                 System.out.print("Seleccione preparador fisico: ");
                                 x = sc.nextInt();
-                            }
-                            System.out.println();
-                            personal.add(preparadoresfisicos.get(x));
-                            
-                            for (int i = 0; i < medicosgeneralesx.size(); i++) {
-                                System.out.println((i+1) + " " + medicosgeneralesx.get(i).getNombre());
-                            }
-                            System.out.print("Seleccione medico general: ");
-                            x = sc.nextInt();
-                            x--;
-                            while (x >= medicosgeneralesx.size() || x < 0) {
+                                x--;
+                                while (x >= preparadoresfisicos.size() || x < 0) {
+                                    System.out.println();
+                                    System.out.println("Preparador fisico no valido");
+                                    System.out.print("Seleccione preparador fisico: ");
+                                    x = sc.nextInt();
+                                    x--;
+                                }
                                 System.out.println();
-                                System.out.println("Medico general valido");
-                                System.out.print("Seleccione medico general asistente: ");
+                                personal.add(preparadoresfisicos.get(x));
+
+                                for (int i = 0; i < medicosgeneralesx.size(); i++) {
+                                    System.out.println((i+1) + " " + medicosgeneralesx.get(i).getNombre() + " " + medicosgeneralesx.get(i).getApellido());
+                                }
+                                System.out.print("Seleccione medico general: ");
                                 x = sc.nextInt();
-                            }
-                            System.out.println();
-                            personal.add(medicosgeneralesx.get(x));
+                                x--;
+                                while (x >= medicosgeneralesx.size() || x < 0) {
+                                    System.out.println();
+                                    System.out.println("Medico general no valido");
+                                    System.out.print("Seleccione medico general: ");
+                                    x = sc.nextInt();
+                                    x--;
+                                }
+                                System.out.println();
+                                personal.add(medicosgeneralesx.get(x));
+
+                                for (int i = 0; i < terapeutasx.size(); i++) {
+                                    System.out.println((i+1) + " " + terapeutasx.get(i).getNombre() + " " + terapeutasx.get(i).getApellido());
+                                }
+                                System.out.print("Seleccione terapeuta: ");
+                                x = sc.nextInt();
+                                x--;
+                                while (x >= terapeutasx.size() || x < 0) {
+                                    System.out.println();
+                                    System.out.println("Terapeuta no valido");
+                                    System.out.print("Seleccione terapeuta: ");
+                                    x = sc.nextInt();
+                                    x--;
+                                }
+                                System.out.println();
+                                personal.add(terapeutasx.get(x));
+
+                                for (int i = 0; i < cirujanosx.size(); i++) {
+                                    System.out.println((i+1) + " " + cirujanosx.get(i).getNombre() + " " + cirujanosx.get(i).getApellido());
+                                }
+                                System.out.print("Seleccione cirujano: ");
+                                x = sc.nextInt();
+                                x--;
+                                while (x >= terapeutasx.size() || x < 0) {
+                                    System.out.println();
+                                    System.out.println("Cirujano no valido");
+                                    System.out.print("Seleccione cirujano: ");
+                                    x = sc.nextInt();
+                                    x--;
+                                }
+                                System.out.println();
+                                personal.add(cirujanosx.get(x));
+
+                                for (int i = 0; i < dueñosx.size(); i++) {
+                                    System.out.println((i+1) + " " + dueñosx.get(i).getNombre() + " " + dueñosx.get(i).getApellido());
+                                }
+                                System.out.print("Seleccione dueño: ");
+                                x = sc.nextInt();
+                                x--;
+                                while (x >= dueñosx.size() || x < 0) {
+                                    System.out.println();
+                                    System.out.println("Dueño no valido");
+                                    System.out.print("Seleccione dueño: ");
+                                    x = sc.nextInt();
+                                    x--;
+                                }
+                                System.out.println();
+                                personal.add(dueñosx.get(x));
+                                
+                                Dueño dueño = dueñosx.get(x);
+                                
+                                
+                                System.out.print("Ingrese cantidad de jugadas: ");
+                                int cantjugadas = sc.nextInt();
+                                System.out.println();
+                                
+                                for (int i = 0; i < cantjugadas; i++) {
+                                    for (int j = 0; i < jugadas.size(); i++) {
+                                        System.out.println((j+1) + " " + jugadas.get(i).getDescip());
+                                    }
+                                    System.out.print("Seleccione jugada: ");
+                                    x = sc.nextInt();
+                                    x--;
+                                    while (x >= jugadas.size() || x < 0) {
+                                        System.out.println();
+                                        System.out.println("Jugada no valida");
+                                        System.out.print("Seleccione jugada: ");
+                                        x = sc.nextInt();
+                                        x--;
+                                    }
+                                    System.out.println();
+                                }
+                                
+                                Equipo e = new Equipo (nombre,añof,anillos,dueño);
+                                equipos.add(e);
+                                
+                                e.setJugadas(jugadas);
+                                e.setPersonal(personal);
+                            }                               
+                            
                             break;
                         case "3":
                             System.out.print("Ingrese descripción: ");
@@ -376,8 +463,88 @@ public class Lab3_FelipeLinCamiloFerrera {
                             break;
                     }
                     break;
+                case "4":
+                    if (equipos.size() < 2){
+                        System.out.println("No hay suficientes equipos para jugar");
+                    } else {
+                        
+                    }
+                    break;
                 case "5":
-                    System.out.println(personas);
+                    for (int i = 0; i < equipos.size(); i++) {
+                        System.out.println((i+1) + ". " + equipos.get(i).getNombre());
+                    }
+                    System.out.println("Seleccione equipo: ");
+                    int a = sc.nextInt();
+                    a--;
+                    
+                    while (a < 0 || a >= equipos.size()) {
+                        System.out.println();
+                        System.out.println("Equipo no encontrado");
+                        System.out.println("Seleccione equipo: ");
+                        a = sc.nextInt();
+                        a--;
+                    }
+                    System.out.println();
+                    
+                    ArrayList <Persona> personal = equipos.get(a).getPersonal();
+                    ArrayList <PreparadorFisico> preparadoresf = new ArrayList();
+                    
+                    for (int i = 0; i < personal.size(); i++) {
+                        if (personal.get(i) instanceof PreparadorFisico){
+                            preparadoresf.add((PreparadorFisico) personal.get(i));
+                        }
+                    }
+                    
+                    for (int i = 0; i < preparadoresf.size(); i++) {
+                        System.out.println((i+1) + ". " + preparadoresf.get(i).getNombre() + " " + preparadoresf.get(i).getApellido());
+                    }
+                    System.out.print("Seleccione preparador fisico: ");
+                    int b = sc.nextInt();
+                    b--;
+                    
+                    while (a < 0 || a >= preparadoresf.size()) {
+                        System.out.println();
+                        System.out.println("Preparador fisico no encontrado");
+                        System.out.println("Seleccione preparador fisico: ");
+                        b = sc.nextInt();
+                        b--;
+                    }
+                    System.out.println();
+                    
+                    for (int i = 0; i < 3; i++) {
+                        for (int j = 0; j < equipos.get(a).getJugadas().size(); j++) {
+                            System.out.println((j+1) + ". " + equipos.get(a).getJugadas().get(i).getDescip());
+                        }
+                        System.out.println("Seleccione jugada: ");
+                        int c = sc.nextInt();
+                        c--;
+                        
+                        while (c >= equipos.get(a).getJugadas().size() || c < 0) {
+                            System.out.println();
+                            System.out.println("Jugada no encontrada");
+                            System.out.print("Seleccione jugada: ");
+                            c = sc.nextInt();
+                            c--;
+                        }
+                        
+                        int y = 1 + rand.nextInt(11);
+                        boolean exito;
+                        
+                        if (y % 2 == 0){
+                            exito = true;
+                        } else {
+                            exito = false;
+                        }
+                        
+                        if (exito == true){
+                            System.out.println("Jugada entranada con exito");
+                        } else {
+                            System.out.println("Jugada entrenada sin exito");
+                        }
+                        System.out.println();
+                    }
+                    
                     break;
                 default:
                     System.out.println("Opcion Incorrecta");
